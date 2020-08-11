@@ -7,9 +7,9 @@ ENV SITE_URL http://google.com/
 
 WORKDIR /data
 
-COPY some_file.txt /data
+COPY tmp/some_file.txt /data
 
 VOLUME /data
-COPY new_file.txt /data
+COPY tmp/new_file.txt /data
 
 CMD sh -c "curl -L $SITE_URL > /data/results"
