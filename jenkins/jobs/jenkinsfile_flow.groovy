@@ -6,7 +6,7 @@ pipelineJob("test-pipeline") {
     parameters {
       choiceParam('ACTION', ["plan", "apply"], "Choose current action")
       stringParam('COMMIT_HASH')
-	  booleanParam('BUILD_IMAGE', true, 'Build image')
+	    booleanParam('BUILD_IMAGE', true, 'Build image')
     }
 
     definition {
@@ -14,12 +14,12 @@ pipelineJob("test-pipeline") {
    			scm {
             	git {
                   remote {
-                        github("dgadavin/devops-course-itea", 'https')
+                        github("dgadavin/devopsology-base", 'https')
                         branch("master")
                   }
               }
         }
-        scriptPath("advance_course/jenkins/Jenkinsfile")
+        scriptPath("jenkins/Jenkinsfile")
       }
 
     }

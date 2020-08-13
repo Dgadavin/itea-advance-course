@@ -128,7 +128,7 @@ def seedJobXml = """<?xml version='1.0' encoding='UTF-8'?>
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/Dgadavin/devops-course-itea.git</url>
+        <url>https://github.com/Dgadavin/devopsology-base.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -148,7 +148,7 @@ def seedJobXml = """<?xml version='1.0' encoding='UTF-8'?>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.52">
-      <targets>advance_course/jenkins/jobs/*.groovy</targets>
+      <targets>jenkins/jobs/*.groovy</targets>
       <usingScriptText>false</usingScriptText>
       <ignoreExisting>false</ignoreExisting>
       <ignoreMissingFiles>false</ignoreMissingFiles>

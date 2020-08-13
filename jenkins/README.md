@@ -1,3 +1,21 @@
+# Jenkins
+
+## Setup Jenkin
+
+```bash
+yum update
+yum install wget
+yum install git # Only in container
+yum install syslog # Only in container
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+yum install jenkins
+service jenkins start
+yum install java-1.8.0
+yum remove java-1.7.0-openjdk # Only on EC2 instances
+service jenkins start
+```
+
 ## Create GitHub webhook
 You need to proxy real DNS to your localhost. Ngrok the best way to do this
 `docker run -e TARGET_HOST=jenkins -e TARGET_PORT=8080 --link <jenkins-container-name>:jenkins gtriggiano/ngrok-tunnel`
