@@ -5,12 +5,18 @@ node {
         notifyBuild()
         stage('Checkout') {
             git branch: 'master',
-                url: 'https://github.com/Dgadavin/devopsology-base.git'
+                url: 'https://github.com/Dgadavin/devopsology-base-course.git'
 
         }
-        stage('Print Hello') {
-            sh 'echo Hello world'
-        }
+        if (env.BRANCH == "test"):
+          stage('Print Hello') {
+              sh 'echo Hello world'
+          }
+        else:
+          stage('Print World') {
+              sh 'cd /data && python hello.py'
+              sh 'echo Max'
+          }
         stage('Run the tests') {
             sh 'echo "Hello. here from tests"'
         }
