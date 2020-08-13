@@ -8,11 +8,11 @@ node {
                 url: 'https://github.com/Dgadavin/devopsology-base-course.git'
 
         }
-        if (env.BRANCH == "test"):
+        if (env.BRANCH == "test")
           stage('Print Hello') {
               sh 'echo Hello world'
           }
-        else:
+        else
           stage('Print World') {
               sh 'cd /data && python hello.py'
               sh 'echo Max'
