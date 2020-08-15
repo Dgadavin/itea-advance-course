@@ -1,0 +1,11 @@
+---
+users:
+  - name: msotnikov
+    gecos: Maksym Sotnikov
+    github: Dgadavin
+  - name: koriakin
+    gecos: Andrii Koriakin
+    github: usasm
+  - name: zharov
+    gecos: Konstantin Zharov
+    github: zibenua

@@ -1,0 +1,7 @@
+- hosts: stage
+# - hosts: tag_Ansible_true
+  vars:
+    admin_group: avalaunch
+  roles:
+    - admin-users
+    - service-configs

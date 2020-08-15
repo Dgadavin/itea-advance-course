@@ -1,0 +1,36 @@
+---
+- name: prepare folders
+  file:
+    state: directory
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+    path: "{{ item }}"
+    recurse: yes
+  with_items:
+    - /config/
+  tags:
+    - folders
+
+- name: include specific vars
+  include_vars: "../../secrets.yml"
+  tags:
+    - configs
+
+- name: setup configurations
+  template:
+    src: "{{ item }}.j2"
+    dest: "/config/{{ item }}"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+    backup: yes
+  with_items:
+    - amazon_s3.yml
+    - database.yml
+  tags:
+    - configs
+
+- name: reload systemd daemon
+  systemd:
+    daemon-reload: yes
+  tags:
+    - configs

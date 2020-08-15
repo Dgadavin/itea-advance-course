@@ -1,0 +1,46 @@
+---
+# Variable setup.
+- name: Include OS-Specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Define jenkins_repo_url
+  set_fact:
+    jenkins_repo_url: "{{ __jenkins_repo_url }}"
+  when: jenkins_repo_url is not defined
+
+- name: Define jenkins_repo_key_url
+  set_fact:
+    jenkins_repo_key_url: "{{ __jenkins_repo_key_url }}"
+  when: jenkins_repo_key_url is not defined
+
+- name: Install java-1.8
+  package:
+    name: "java-1.8.0"
+    state: present
+    
+- name: Define jenkins_pkg_url
+  set_fact:
+    jenkins_pkg_url: "{{ __jenkins_pkg_url }}"
+  when: jenkins_pkg_url is not defined
+
+# Setup/install tasks.
+- include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+# Configure Jenkins init settings.
+- include_tasks: settings.yml
+
+# Make sure Jenkins starts, then configure Jenkins.
+- name: Ensure Jenkins is started and runs on startup.
+  service: name=jenkins state=started enabled=yes
+
+- name: Remove Jenkins security init scripts after first startup.
+  file:
+    path: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
+    state: absent
+
+# Update Jenkins and install configured plugins.
+- include_tasks: plugins.yml

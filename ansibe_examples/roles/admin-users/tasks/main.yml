@@ -1,0 +1,56 @@
+- name: include specific vars
+  include_vars: "../../vars/github-keys.yaml"
+  tags:
+    - sudo
+    - ssh
+
+- name: Create group for admin users
+  group:
+    name: '{{ admin_group }}'
+  tags:
+    - sudo
+    - ssh
+
+- name: Create admin users
+  user:
+    name: '{{ item.name }}'
+    comment: '{{ item.gecos | default(item.name) }}'
+    groups: '{{ admin_group }}'
+    shell: '/bin/bash'
+    append: yes
+  with_items: "{{ users }}"
+  tags:
+    - sudo
+    - ssh
+
+- name: Fix owner
+  file:
+    path: '/home/{{ item.name }}'
+    owner: '{{ item.name }}'
+    group: '{{ item.name }}'
+    recurse: true
+    state: directory
+  with_items: "{{ users }}"
+  tags:
+    - sudo
+    - ssh
+
+- name: Authorize admin users to login via ssh
+  authorized_key:
+    user: '{{ item.name }}'
+    key: "https://github.com/{{ item.github }}.keys"
+  with_items: "{{ users }}"
+  tags:
+    - sudo
+    - ssh
+
+- name: Set sudo rights for admin users
+  template:
+    src: admin-users-sudoers.j2
+    dest: '/etc/sudoers.d/{{ admin_group }}-group-sudoers'
+    owner: root
+    group: root
+    mode: 0400
+  tags:
+    - sudo
+    - ssh
