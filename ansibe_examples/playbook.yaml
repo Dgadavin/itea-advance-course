@@ -1,4 +1,5 @@
-- hosts: stage
+- hosts: tag_Ansible_true
+  become: true
 # - hosts: tag_Ansible_true
   vars:
     admin_group: avalaunch

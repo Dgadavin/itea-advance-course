@@ -9,3 +9,9 @@ users:
   - name: zharov
     gecos: Konstantin Zharov
     github: zibenua
+  - name: golubnichiy
+    gecos: Alexey Golubnichiy
+    github: alexey-golubnichiy
+  - name: lutskyi
+    gecos: Maksym Lutskyi
+    github: maksymlutskyi

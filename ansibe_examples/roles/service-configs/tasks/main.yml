@@ -9,6 +9,7 @@
   with_items:
     - /config/
   tags:
+    - configs
     - folders
 
 - name: include specific vars
