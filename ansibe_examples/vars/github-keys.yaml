@@ -15,3 +15,15 @@ users:
   - name: lutskyi
     gecos: Maksym Lutskyi
     github: maksymlutskyi
+   - name: golubnichiy
+    gecos: Alexey Golubnichiy
+    github: alexey-golubnichiy 
+  -  name: lyaskovskiy
+    gecos: Alexandr Lyaskovskiy
+    github: alexandr-its 
+   - name: stepanenko
+    gecos: Stepanenko Igor
+    github: stepanenkoiv 
+  - name: yefymenko
+    gecos: Oleksandr Yefymenko
+    github: alexean86

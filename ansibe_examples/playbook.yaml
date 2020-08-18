@@ -1,4 +1,4 @@
-- hosts: tag_Ansible_true
+- hosts: stage
   become: true
 # - hosts: tag_Ansible_true
   vars:
