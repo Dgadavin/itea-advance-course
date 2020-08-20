@@ -19,4 +19,13 @@ spec:
     spec:
       containers:
       - name: nginx
+        env:
+          - name: NAME
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: name
+        envFrom:
+          - configMapRef:
+            name: env-config
         image: nginx

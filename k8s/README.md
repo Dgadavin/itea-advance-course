@@ -32,12 +32,18 @@ kubectl edit pod <pod-name>
 kubectl get deployments
 kubectl describe deployments <deployment-name>
 kubectl edit deployments <deployment-name>
-
+```
+### Perform a rolling update with deployments
+```bash
+kubectl apply -f deployment_nginx.yaml
+kubectl get deployments
+kubectl get rs
 kubectl rollout status deployment/<deployment-name>
 kubectl set image deployment/<deployment-name> nginx=nginx:1.16.1 --record
 kubectl rollout history deployment/<deployment-name>
+kubectl set image deployment/<deployment-name> nginx=nginx:1.17 --record
 kubectl rollout undo deployment/<deployment-name>
-kubectl scale deployment/<deployment-name> --replicas=5
+kubectl scale deployment/<deployment-name> --replicas=2
 ```
 
 ## Working with services
