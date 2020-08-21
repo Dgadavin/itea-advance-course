@@ -20,6 +20,11 @@ spec:
       containers:
       - name: nginx
         env:
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: username
           - name: NAME
             valueFrom:
               configMapKeyRef:
@@ -27,5 +32,5 @@ spec:
                 key: name
         envFrom:
           - configMapRef:
-            name: env-config
+              name: env-config
         image: nginx
