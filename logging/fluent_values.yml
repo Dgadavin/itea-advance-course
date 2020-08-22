@@ -1,0 +1,3 @@
+elasticsearch:
+  hosts:
+    - "elasticsearch-master-headless:9200"
