@@ -5,15 +5,23 @@ node {
         notifyBuild()
         stage('Checkout') {
             git branch: 'master',
-                url: 'https://github.com/Dgadavin/devopsology-base.git'
+                url: 'https://github.com/Dgadavin/devopsology-base-course.git'
 
         }
         stage('Print Hello') {
             sh 'echo Hello world'
         }
+
+        if (env.ENV == "dev") {
         stage('Run the tests') {
             sh 'echo "Hello. here from tests"'
         }
+      }
+      else {
+        stage('Run the new test') {
+            sh 'echo "Hello. here from tests"'
+        }
+      }
     } catch (e) {
         sh 'exit 1'
         currentBuild.result = "FAILED"
