@@ -3,27 +3,24 @@ users:
   - name: msotnikov
     gecos: Maksym Sotnikov
     github: Dgadavin
-  - name: koriakin
-    gecos: Andrii Koriakin
-    github: usasm
-  - name: zharov
-    gecos: Konstantin Zharov
-    github: zibenua
-  - name: golubnichiy
-    gecos: Alexey Golubnichiy
-    github: alexey-golubnichiy
-  - name: lutskyi
-    gecos: Maksym Lutskyi
-    github: maksymlutskyi
-   - name: golubnichiy
-    gecos: Alexey Golubnichiy
-    github: alexey-golubnichiy 
-  -  name: lyaskovskiy
-    gecos: Alexandr Lyaskovskiy
-    github: alexandr-its 
-   - name: stepanenko
-    gecos: Stepanenko Igor
-    github: stepanenkoiv 
-  - name: yefymenko
-    gecos: Oleksandr Yefymenko
-    github: alexean86
+  - name: askovtun
+    gecos: Andrii Kovtun
+    github: askovtun
+  - name: krodionov
+    gecos: Konstantin Rodionov
+    github: Kostiantyn-R
+  - name: tsupinskiy
+    gecos: Taras Supinskiy
+    github: tsupinskiy
+  - name: dkoval
+    gecos: Dmytro Koval
+    github: dkovalua
+  - name: nromanenko
+    gecos: Demiana Romanenko
+    github: Nadyazavr
+  - name: mlynets
+    gecos: Maksym Lynets
+    github: binarryfinarry
+  - name: bkobzarenko
+    gecos: Bogdan Kobzarenko
+    github: bkobzarenko

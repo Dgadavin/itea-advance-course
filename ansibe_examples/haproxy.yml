@@ -1,0 +1,7 @@
+- hosts: stage
+  become: true
+# - hosts: tag_Ansible_true
+  vars:
+    admin_group: avalaunch
+  roles:
+    - { role: geerlingguy.haproxy }

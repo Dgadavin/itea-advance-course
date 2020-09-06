@@ -1,10 +1,18 @@
 # Ansible
 
+## Install Ansible with python
+```bash
+easy_install pip
+pip install ansible
+```
+
 ## Setup inventory file
 
 ```bash
-touch /hosts
+touch ansible_examples/hosts
 Put such content
+[stage]
+<ip-of-ansible-test-machine>
 [local]
 localhost
 ```
@@ -12,26 +20,31 @@ localhost
 ##Ad-hoc commands
 
 ```bash
-ansible local -m ping  -i hosts --connection local
-ansible local -m setup  -i hosts --connection local
-ansible local -m shell -a 'uname -a' -i hosts --connection local
-ansible local -m copy -a 'src=/etc/motd dest=/tmp/' -i hosts --connection local
+ansible --key-file /home/ec2-user/<key-name> stage -m ping -u ec2-user -i hosts
+ansible --key-file /home/ec2-user/<key-name> stage -m setup -u ec2-user -i hosts
+ansible --key-file /home/ec2-user/<key-name> stage -m shell -a 'uname -a' -u ec2-user -i hosts
+ansible --key-file /home/ec2-user/<key-name> stage -m copy -a 'src=/etc/motd dest=/tmp/' -u ec2-user -i hosts
 ```
 
-## Setup Jenkins
-We will use Amazon Linux v1
-
-`docker run -it -p 8090:8080 amazonlinux:1 bash`
+## Setup ssh keys
 
 ```bash
-yum update
-yum install git # Only in container
-yum install ansible # Only in container
-ansible-playbook ansible.yml -i /hosts --connection local
+ansible-playbook playbook.yaml -i hosts --private-key /home/ec2-user/<key-name> -u ec2-user --check -t ssh --diff # Check and shows diif wthout actuall setup
+ansible-playbook playbook.yaml -i hosts --private-key /home/ec2-user/<key-name> -u ec2-user -t ssh # Setup keys
 ```
-## Install Ansible with python
+
+## Use ansible galaxy to install haproxy
+
 ```bash
-curl -O https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
-pip install ansible
+cd devopsology-base-course/ansibe_examples
+ansible-galaxy install geerlingguy.haproxy --roles-path roles/
+ansible-playbook haproxy.yml -i hosts --private-key /home/ec2-user/<key-name> -u ec2-user
+```
+
+## Use ansible vault
+
+```bash
+ansible-vault create new_secret.yml # create vault file with secret content
+ansible-vault edit new_secret.yml # edit secret file
+ansible-playbook playbook.yaml -i hosts --private-key /home/ec2-user/<key-name> -u ec2-user --ask-vault-pass -t configs --diff
 ```
