@@ -2,12 +2,12 @@ FROM alpine
 
 RUN apk update --no-cache && apk add git
 
-ARG version=1.1
+ARG env=dev
 
-ENV VERSION=$version
+COPY settings/$env.yaml /data
 
-RUN git clone https://github.com/repo.git?tag=${VERSION}
+ENV ENV=$env
 
 COPY . /data
 
-CMD echo $VERSION
+CMD echo $ENV
