@@ -14,7 +14,7 @@ pipelineJob("test-pipeline") {
    			scm {
             	git {
                   remote {
-                        github("dgadavin/devopsology-base", 'https')
+                        github("dgadavin/devopsology-base-course", 'https')
                         branch("master")
                   }
               }
