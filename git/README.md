@@ -23,8 +23,8 @@ git push origin <branch-name> # Отправить изменения на се�
 # Клонирование репозитария
 
 ```bash
-git clone https://github.com/Dgadavin/devopsology-base-course.git # по логину и паролю если приватный репо
-git clone git@github.com:Dgadavin/devopsology-base-course.git # с помощью ssh key
+git clone https://github.com/Dgadavin/itea-advance-course.git # по логину и паролю если приватный репо
+git clone git@github.com:Dgadavin/itea-advance-course.git # с помощью ssh key
 git fetch # Получить все ветки
 git pull # Вытянуть все изменения по всем веткам
 ```

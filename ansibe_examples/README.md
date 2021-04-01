@@ -36,7 +36,7 @@ ansible-playbook playbook.yaml -i hosts --private-key /home/ec2-user/<key-name> 
 ## Use ansible galaxy to install haproxy
 
 ```bash
-cd devopsology-base-course/ansibe_examples
+cd itea-advance-course/ansibe_examples
 ansible-galaxy install geerlingguy.haproxy --roles-path roles/
 ansible-playbook haproxy.yml -i hosts --private-key /home/ec2-user/<key-name> -u ec2-user
 ```
