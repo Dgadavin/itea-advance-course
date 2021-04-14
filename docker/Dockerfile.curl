@@ -12,4 +12,6 @@ COPY tmp/some_file.txt /data
 VOLUME /data
 COPY tmp/new_file.txt /data
 
+COPY ./ /opt/project
+
 CMD sh -c "curl -L $SITE_URL > /data/results"
