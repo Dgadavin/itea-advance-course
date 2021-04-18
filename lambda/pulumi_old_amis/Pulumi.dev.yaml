@@ -1,0 +1,9 @@
+encryptionsalt: v1:/uffKFsitKY=:v1:kGCY0m6MK1jQcE78:jh4qf4eHOtxgEOkBE+sHKZzkCaByxg==
+config:
+  aws:region: eu-west-1
+  backup_param:backup_bucket: sotnikov-itea-tf-states
+  cleanup_amis:ami_limit: "15"
+  proj:appname: itea-test
+  proj:dc: eu
+  proj:env: prod
+  proj:runtime: python3.8

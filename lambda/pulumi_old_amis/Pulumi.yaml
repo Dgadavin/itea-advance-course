@@ -1,0 +1,6 @@
+name: lambdas
+runtime:
+  name: python
+  options:
+    virtualenv: ../.venv
+description: Deploy lambda function

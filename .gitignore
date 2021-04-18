@@ -4,6 +4,8 @@ python-logger.log
 /venv/
 *.sublime-workspace
 /.venv/
+.venv
+lambda.zip
 /__pycache__/
 /mes-infra-php-jenkins-qa-generated-cf-template.json
 /mes-infra-php-jenkins-prod-generated-cf-template.json
