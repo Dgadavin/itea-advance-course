@@ -16,7 +16,7 @@ kubectl get pod -A
 kubectl get pods -l app=nginx
 kubectl get all
 
-kubectl create --name nginx --image=nginx
+kubectl run my-shell --rm -i --tty --image ubuntu -- bash
 
 kubectl logs <pod-name>
 kubectl logs <pod-name> -c <container-name>
@@ -49,4 +49,8 @@ kubectl scale deployment/<deployment-name> --replicas=2
 ## Working with services
 
 ```bash
+
+# Minikube expose service
+minikube tunnel # Run in separate terminal
+kubectl expose pod nginx-pod --type=LoadBalancer --port=80
 ```
