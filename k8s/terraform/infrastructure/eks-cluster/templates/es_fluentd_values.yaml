@@ -1,0 +1,6 @@
+elasticsearch:
+  host: ${aws_es_hostname}
+  port: 443
+  scheme: https
+awsSigningSidecar:
+  enabled: true

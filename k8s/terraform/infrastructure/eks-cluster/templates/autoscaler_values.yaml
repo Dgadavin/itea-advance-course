@@ -1,0 +1,13 @@
+awsRegion: ${aws_region}
+
+rbac:
+  create: true
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: ${role_arn}
+
+autoDiscovery:
+  clusterName: ${eks_cluster_name}
+
+image:
+  tag: v1.18.1

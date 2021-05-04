@@ -1,0 +1,7 @@
+sources:
+  - crd
+  - service
+  - ingress
+registry: noop
+crd:
+  create: true

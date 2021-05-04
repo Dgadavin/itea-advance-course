@@ -1,0 +1,31 @@
+server:
+  ingress:
+    enabled: true
+    hosts:
+      - argocd.${hosted_zone_name}
+    annotations:
+        kubernetes.io/ingress.class: traefik-int-${env}
+        external-dns.alpha.kubernetes.io/target: traefik-int.${hosted_zone_name}
+  extraArgs:
+    - "--insecure"
+  config:
+    repositories: |
+      - url: git@git.testserver.kiev.ua:teroxx/k8s-manifests.git
+        sshPrivateKeySecret:
+          name: github.private.key
+          key: sshKey
+        insecureIgnoreHostKey: true
+    url: https://argocd.${hosted_zone_name}
+  additionalApplications:
+    - name: seed-job
+      namespace: default
+      project: default
+      source:
+        repoURL: git@git.testserver.kiev.ua:teroxx/k8s-manifests.git
+        targetRevision: HEAD
+        path: argocd-jobs/${env}
+        directory:
+          recurse: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default

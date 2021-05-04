@@ -1,0 +1,18 @@
+podDisruptionBudget:
+  enabled: true
+  maxUnavailable: 1
+deployment:
+  replicas: 1
+service:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+additionalArguments:
+ - "--providers.kubernetesingress"
+ - "--providers.kubernetesingress.ingressendpoint.hostname=traefik-ext-${env}"
+ - "--providers.kubernetesingress.ingressclass=traefik-ext-${env}"
+ - "--providers.kubernetescrd.ingressclass=traefik-ext-${env}"
+ingressRoute:
+  dashboard:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik-ext-${env}
