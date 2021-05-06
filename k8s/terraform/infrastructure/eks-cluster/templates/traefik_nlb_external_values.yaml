@@ -5,6 +5,8 @@ deployment:
   replicas: 1
 service:
   annotations:
+    external-dns.alpha.kubernetes.io/hostname: traefik-ext.${hosted_zone_name}
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ${certificate_arn}
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 additionalArguments:
  - "--providers.kubernetesingress"

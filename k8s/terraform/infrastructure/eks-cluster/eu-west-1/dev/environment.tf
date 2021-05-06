@@ -6,6 +6,10 @@ module "eks-cluster" {
   aws_region        = "eu-west-1"
   appname           = "eks-cluster"
 
+  hosted_zone_name        = "itea.devopsology.org"
+  domain_zone_id          = "Z001828634P7CJAKA3JL6"
+  certificate_domain_name = "*.itea.devopsology.org"
+
   eks_cluster_cidr             = "10.1.0.0/16"
   azs                          = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
   eks_cluster_public_subnets   = ["10.1.48.0/24", "10.1.49.0/24", "10.1.50.0/24"]

@@ -16,6 +16,26 @@ variable "appname" {
   description = "Application name for naming resources"
 }
 
+variable "hosted_zone_name" {
+  type        = string
+  description = "Name of hosted zone"
+}
+
+variable "certificate_domain_name" {
+  type        = string
+  description = "Domain names to generate certificate in ACM"
+}
+
+variable "certificate_alternative_name" {
+  type        = list(any)
+  default     = []
+  description = "Alternative domain names include into certificate"
+}
+
+variable "domain_zone_id" {
+  description = "Route53 DNS zone ID"
+}
+
 variable "azs" {
   type        = list(string)
   description = "Availability zones"
