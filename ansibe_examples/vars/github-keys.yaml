@@ -3,24 +3,3 @@ users:
   - name: msotnikov
     gecos: Maksym Sotnikov
     github: Dgadavin
-  - name: askovtun
-    gecos: Andrii Kovtun
-    github: askovtun
-  - name: krodionov
-    gecos: Konstantin Rodionov
-    github: Kostiantyn-R
-  - name: tsupinskiy
-    gecos: Taras Supinskiy
-    github: tsupinskiy
-  - name: dkoval
-    gecos: Dmytro Koval
-    github: dkovalua
-  - name: nromanenko
-    gecos: Demiana Romanenko
-    github: Nadyazavr
-  - name: mlynets
-    gecos: Maksym Lynets
-    github: binarryfinarry
-  - name: bkobzarenko
-    gecos: Bogdan Kobzarenko
-    github: bkobzarenko

@@ -2,6 +2,6 @@
   become: true
 # - hosts: tag_Ansible_true
   vars:
-    admin_group: avalaunch
+    admin_group: itea
   roles:
     - { role: geerlingguy.haproxy }
