@@ -1,8 +1,9 @@
-- hosts: stage
+# - hosts: stage
+- hosts: tag_Ansible_true
   become: true
-# - hosts: tag_Ansible_true
   vars:
     admin_group: itea
+    env: dev
   roles:
     - admin-users
     - service-configs

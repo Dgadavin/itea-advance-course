@@ -20,8 +20,7 @@ localhost
 ##Ad-hoc commands
 
 ```bash
-ansible --key-file /home/ec2-user/<k
-ey-name> stage -m ping -u ec2-user -i hosts
+ansible --key-file /home/ec2-user/<key-name> stage -m ping -u ec2-user -i hosts
 ansible --key-file /home/ec2-user/<key-name> stage -m setup -u ec2-user -i hosts
 ansible --key-file /home/ec2-user/<key-name> stage -m shell -a 'uname -a' -u ec2-user -i hosts
 ansible --key-file /home/ec2-user/<key-name> stage -m copy -a 'src=/etc/motd dest=/tmp/' -u ec2-user -i hosts

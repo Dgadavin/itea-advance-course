@@ -1,8 +1,6 @@
 env: prod
 deploy_user: ec2-user
 service:
-  s3:
-    bucket_name: my-test-bucket
   db:
     username: test
     name: test
