@@ -6,6 +6,17 @@ easy_install pip
 pip install ansible
 ```
 
+## Setup Ansible managed nodes into AWS
+
+To setup ansible managed nodes into AWS please go to your AWS account and note `vpc_id` and upload public key and note the `key_name`. This values will used in terraform
+
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+```
+
 ## Setup inventory file
 
 ```bash
