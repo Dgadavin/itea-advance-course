@@ -35,7 +35,7 @@ pipeline {
     stage("Clone k8s repo") {
       steps{
         dir('k8s') {}
-        git branch: 'master',
+        git branch: 'main',
             credentialsId: 'itea-deploy',
             url: 'git@github.com:Dgadavin/k8s-manifests.git'
       }
@@ -66,7 +66,7 @@ pipeline {
                   #!/usr/bin/env bash
                   set +x
                   export GIT_SSH_COMMAND="ssh -oStrictHostKeyChecking=no"
-                  git push origin master
+                  git push origin main
                """)
           }
         }
