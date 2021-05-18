@@ -28,4 +28,4 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
 
-# docker run -p 8080:8080 -e ENV=qa -e AWS_DEFAULT_REGION=eu-west-1 <image-name>
+# docker run -p 8080:8080 -e ENV=qa <image-name>

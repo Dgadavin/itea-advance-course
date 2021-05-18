@@ -5,7 +5,8 @@ folder('Backend') {
 def services = [
   "new-backend",
   "one-more-backend",
-  "and-one-more-backend"
+  "and-one-more-backend",
+  "another-job"
 ]
 def credentialsToUse = "github-deploy"
 def environment = System.getenv('ENV')
