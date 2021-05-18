@@ -37,7 +37,7 @@ pipeline {
         dir('k8s') {}
         git branch: 'master',
             credentialsId: 'itea-deploy',
-            url: 'git@github.com:Dgadavin/itea-advance-course.git'
+            url: 'git@github.com:Dgadavin/k8s-manifests.git'
       }
     }
     stage("Kustomize") {
