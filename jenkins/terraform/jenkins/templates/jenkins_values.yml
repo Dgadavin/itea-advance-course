@@ -1,0 +1,138 @@
+controller:
+  tag: "2.263.4-lts"
+  adminPassword: admin
+  jenkinsUrl: "https://jenkins.${hosted_zone}"
+  installPlugins:
+    - kubernetes:1.29.0
+    - workflow-aggregator:2.6
+    - configuration-as-code:1.50
+    - workflow-job:2.40
+    - cloudbees-folder:6.15
+    - dashboard-view:2.14
+    - credentials-binding:1.24
+    - git:4.7.1
+    - git-parameter:0.9.13
+    - gitlab-plugin:1.5.20
+    - greenballs:1.15.1
+    - role-strategy:3.1
+    - locale:1.4
+    - job-dsl:1.77
+    - authorize-project:1.3.0
+    - pipeline-aws:1.43
+    - ssh-agent:1.21
+    - aws-parameter-store:1.2.2
+    - pipeline-utility-steps:2.6.1
+  initializeOnce: true
+  overwritePlugins: true
+  JCasC:
+    configScripts:
+      security: |
+        security:
+          globalJobDslSecurityConfiguration:
+            useScriptSecurity: false
+          queueItemAuthenticator:
+            authenticators:
+            - global:
+                strategy: "triggeringUsersAuthorizationStrategy"
+      seedjob: |
+        jobs:
+          - script: >
+              job('Seed_job') {
+                scm {
+                  git {
+                    remote {
+                      url('git@github.com:Dgadavin/itea-advance-course.git')
+                      credentials("itea-deploy")
+                      branch("master")
+                    }
+                  }
+                }
+                steps {
+                  jobDsl {
+                    targets 'jenkins/jobs/*.groovy'
+                  }
+                }
+              }
+      secrets: |
+        credentials:
+          system:
+            domainCredentials:
+            - credentials:
+              - basicSSHUserPrivateKey:
+                  id: "itea-deploy"
+                  privateKeySource:
+                    directEntry:
+                      privateKey: |-
+                        ${deployer_privat_key}
+                  scope: GLOBAL
+                  username: "itea-deployer"
+  ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik-ext-${env}
+        traefik.ingress.kubernetes.io/router.middlewares: default-requestheaders-https@kubernetescrd
+        external-dns.alpha.kubernetes.io/target: traefik-ext.${hosted_zone}
+      hostName: jenkins.${hosted_zone}
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: ${jenkins_role_arn}
+serviceAccountAgent:
+  name: jenkins
+persistence:
+  size: "10Gi"
+agent:
+  enabled: true
+  command: ""
+  args: ""
+  TTYEnabled: true
+  defaultsProviderTemplate: "docker"
+  podTemplates:
+    docker: |
+      - name: docker
+        label: jenkins-jenkins-agent
+        serviceAccount: jenkins
+        nodeUsageMode: NORMAL
+        podRetention: "never"
+        volumes:
+        - hostPathVolume:
+            hostPath: "/var/run/docker.sock"
+            mountPath: "/var/run/docker.sock"
+        yamlMergeStrategy: "override"
+        containers:
+          - name: "docker"
+            alwaysPullImage: true
+            ttyEnabled: true
+            workingDir: "/home/jenkins"
+            command: ""
+            args: ""
+            image: "docker:latest"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+          - name: "aws-cli"
+            image: "amazon/aws-cli"
+            command: "cat"
+            args: ""
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            ttyEnabled: true
+            workingDir: "/home/jenkins"
+          - name: "kustomize"
+            image: "k8s.gcr.io/kustomize/kustomize:v3.8.7"
+            command: "cat"
+            args: ""
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            ttyEnabled: true
+            workingDir: "/home/jenkins"

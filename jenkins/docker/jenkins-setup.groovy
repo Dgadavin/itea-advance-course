@@ -20,32 +20,10 @@ import hudson.model.UpdateSite
 import jenkins.model.Jenkins
 
 // Common vars
-def git_password = System.getenv('GIT_PASSWORD')
 def environment = System.getenv('ENV')
 
 // plugin settings
 def inst = Jenkins.getInstance()
-
-// LDAP settings
-//String server = ''
-//String rootDN = ''
-//String userSearchBase = '\'
-//String userSearch = ''
-//String groupSearchBase = ''
-//String managerDN = ''
-//boolean inhibitInferRootDN = true
-//def managerPassword = ''
-//SecurityRealm ldap_realm = new LDAPSecurityRealm(server, rootDN, userSearchBase, userSearch, groupSearchBase, managerDN, managerPassword, inhibitInferRootDN)
-//Jenkins.instance.setSecurityRealm(ldap_realm)
-//Jenkins.instance.save()
-
-
-def allure = inst.getDescriptor("ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation")
-def installer = new AllureCommandlineInstaller("2.3")
-def prop = new InstallSourceProperty([installer])
-def sinst = new AllureCommandlineInstallation("allure", "", [prop])
-allure.setInstallations(sinst)
-allure.save()
 
 domain = Domain.global()
 store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
@@ -73,19 +51,19 @@ theme_config.save()
 // credentials_store.addCredentials(global_domain, credentials)
 
 // add users and secrettext for github and slack
-domain = Domain.global()
-store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
-
-usernameAndPassword = new UsernamePasswordCredentialsImpl(
-    CredentialsScope.GLOBAL,
-    "git-hhtp",
-		"",
-    "dgadavin",
-    git_password
-)
-
-
-store.addCredentials(domain, usernameAndPassword)
+// domain = Domain.global()
+// store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+//
+// usernameAndPassword = new UsernamePasswordCredentialsImpl(
+//     CredentialsScope.GLOBAL,
+//     "git-hhtp",
+// 		"",
+//     "dgadavin",
+//     git_password
+// )
+//
+//
+// store.addCredentials(domain, usernameAndPassword)
 
 
 // mail configuration
@@ -108,11 +86,6 @@ jlc.setUrl(linkUri)
 
 jlc.setAdminAddress("notifications@services.example.com")
 jlc.save()
-
-// Audit Trail
-// audit_logger = new LogFileAuditLogger("/var/log/jenkins/audit2.log", 10, 10)
-// def adp = inst.getDescriptor("hudson.plugins.audit_trail")
-// adp.loggers = audit_logger
 
 // general settings
 inst.setNumExecutors(5)
