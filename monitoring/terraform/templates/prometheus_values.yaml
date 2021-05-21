@@ -1,0 +1,44 @@
+defaultRules:
+  rules:
+    etcd: false
+    kubeScheduler: false
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeScheduler:
+  enabled: false
+prometheus:
+  ingress:
+    enabled: true
+    hosts:
+      - prometheus.${hosted_zone_name}
+    annotations:
+        kubernetes.io/ingress.class: traefik-ext
+        external-dns.alpha.kubernetes.io/target: traefik-ext.${hosted_zone_name}
+  prometheusSpec:
+    replicas: 1
+    retention: 12h
+    externalLabels:
+      cluster: ${cluster}
+    replicaExternalLabelName: replica
+    prometheusExternalLabelName: cluster
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 20Gi
+alertmanager:
+  enabled: false
+grafana:
+  enabled: true
+  plugins:
+    - "grafana-piechart-panel"
+  ingress:
+    enabled: true
+    hosts:
+      - grafana.${hosted_zone_name}
+    annotations:
+        kubernetes.io/ingress.class: traefik-ext
+        external-dns.alpha.kubernetes.io/target: traefik-ext.${hosted_zone_name}

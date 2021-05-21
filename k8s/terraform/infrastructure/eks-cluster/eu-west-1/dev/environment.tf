@@ -26,10 +26,10 @@ module "eks-cluster" {
   spot_price                               = "0.015"
 
 
-  # es_version        = "7.1"
-  # es_instance_type  = "t3.medium.elasticsearch"
-  # es_volume_size    = 50
-  # es_instance_count = 1
+  es_version        = "7.1"
+  es_instance_type  = "t3.medium.elasticsearch"
+  es_volume_size    = 20
+  es_instance_count = 1
 
   map_users = [
     {

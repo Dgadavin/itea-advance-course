@@ -44,24 +44,24 @@ resource "helm_release" "argocd-app" {
   ]
 }
 
-# data "template_file" "fluentd-values" {
-#   template = file("../../templates/es_fluentd_values.yaml")
-#   vars = {
-#     aws_es_hostname = module.es.endpoint
-#   }
-# }
+data "template_file" "fluentd-values" {
+  template = file("../../templates/es_fluentd_values.yaml")
+  vars = {
+    aws_es_hostname = module.es.endpoint
+  }
+}
 
-# resource "helm_release" "fluentd" {
-#   depends_on = [module.es]
-#   name       = "fluentd-logging"
-#   chart      = "fluentd-elasticsearch"
-#   repository = "https://kiwigrid.github.io"
-#   version    = "6.2.3"
-#   values = [
-#     data.template_file.fluentd-values.rendered
-#   ]
-# }
-#
+resource "helm_release" "fluentd" {
+  depends_on = [module.es]
+  name       = "fluentd-logging"
+  chart      = "fluentd-elasticsearch"
+  repository = "https://kiwigrid.github.io"
+  version    = "6.2.3"
+  values = [
+    data.template_file.fluentd-values.rendered
+  ]
+}
+
 data "template_file" "external-dns-values" {
   template = file("../../templates/external_dns_values.yaml")
   vars = {
