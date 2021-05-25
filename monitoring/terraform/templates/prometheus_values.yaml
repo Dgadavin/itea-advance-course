@@ -14,7 +14,7 @@ prometheus:
     hosts:
       - prometheus.${hosted_zone_name}
     annotations:
-        kubernetes.io/ingress.class: traefik-ext
+        kubernetes.io/ingress.class: traefik-ext-${env}
         external-dns.alpha.kubernetes.io/target: traefik-ext.${hosted_zone_name}
   prometheusSpec:
     replicas: 1
@@ -40,5 +40,5 @@ grafana:
     hosts:
       - grafana.${hosted_zone_name}
     annotations:
-        kubernetes.io/ingress.class: traefik-ext
+        kubernetes.io/ingress.class: traefik-ext-${env}
         external-dns.alpha.kubernetes.io/target: traefik-ext.${hosted_zone_name}
